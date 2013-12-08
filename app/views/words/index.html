@@ -1,0 +1,10 @@
+<h1>Listing Words</h1>
+ 
+<p>
+ 
+  <% @words.each do |word| %>
+    
+    <span title="<%= word.speech%> <%= word.tense%> <%= word.voice%> <%= word.mood%> <%= word.person%> <%= word.verbNumber%> <%= word.gender%> <%= word.case%> <%= word.nounNumber%> <%= word.definition%>"><%= word.greekWord%></span>
+  <% end %>
+
+</p>

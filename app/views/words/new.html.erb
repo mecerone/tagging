@@ -1,0 +1,49 @@
+<p>Would you like to create a new paragraph or sentence?</p>
+
+<%= form_for :word, url: words_path do |f| %>
+<p>
+
+<%= f.label :"Your Name" %><%= f.text_field :contributor%><br/>
+<%= f.label :Homily %><%= f.text_field :homilyRef%><br/>
+<%= f.label :Paragraph %><%= f.text_field :paragraphRef%><br/>
+<%= f.label :Sentence %><%= f.text_field :sentence%><br/>
+
+
+<table>
+<tr>
+<th>ID</th>
+<th>WORD</th>
+<th>LEXICAL FORM</th>
+<th>PART OF SPEECH</th>
+<th>TENSE</th>
+<th>VOICE</th>
+<th>MOOD</th>
+<th>PERSON</th>
+<th>#</th>
+<th>GENDER</th>
+<th>CASE</th>
+<th>#</th>
+<th>DEFINITION</th>
+<th></th>
+</tr>
+<tr>
+
+<td><%=f.text_field :wordInPar%></td>
+<td><%= f.text_field :greekWord%></td>
+<td><%= f.text_field :lexform%></td>
+<td><%= f.text_field :speech%></td>
+<td><%= f.text_field :tense%></td>
+<td><%= f.text_field :voice%></td>
+<td><%= f.text_field :mood%></td>
+<td><%= f.text_field :person%></td>
+<td><%= f.text_field :verbNumber%></td>
+<td><%= f.text_field :gender%></td>
+<td><%= f.text_field :case%></td>
+<td><%= f.text_field :nounNumber%></td>
+<td><%= f.text_field :definition%></td>
+<td><%= f.submit %></td>
+<% end %>
+</tr>
+</table>
+
+
