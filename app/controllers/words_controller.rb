@@ -1,11 +1,15 @@
 class WordsController < ApplicationController
 	def new
+		@word = Word.new
 	end
 
 	def create
   		@word = Word.new(post_params)
-  		@word.save
-  		redirect_to @word
+  		if @word.save
+  		  redirect_to @word
+  		else
+          render 'new'
+        end
 	end
 
 	def show

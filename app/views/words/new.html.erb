@@ -1,3 +1,15 @@
+<% if @word.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@word.errors.count, "error") %> prohibited
+      this post from being saved:</h2>
+    <ul>
+    <% @word.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
 <p>Would you like to create a new paragraph or sentence?</p>
 
 <%= form_for :word, url: words_path do |f| %>
@@ -8,10 +20,12 @@
 <%= f.label :Paragraph %><%= f.text_field :paragraphRef%><br/>
 <%= f.label :Sentence %><%= f.text_field :sentence%><br/>
 
+<%= text_area_tag(:ignoreThisText, "enter text here", size: "100x6") %>
+
 
 <table>
 <tr>
-<th>ID</th>
+<th></th>
 <th>WORD</th>
 <th>LEXICAL FORM</th>
 <th>PART OF SPEECH</th>
@@ -28,18 +42,19 @@
 </tr>
 <tr>
 
-<td><%=f.text_field :wordInPar%></td>
+
+<td><%=f.hidden_field :wordInPar%></td>
 <td><%= f.text_field :greekWord%></td>
 <td><%= f.text_field :lexform%></td>
-<td><%= f.text_field :speech%></td>
-<td><%= f.text_field :tense%></td>
-<td><%= f.text_field :voice%></td>
-<td><%= f.text_field :mood%></td>
-<td><%= f.text_field :person%></td>
-<td><%= f.text_field :verbNumber%></td>
-<td><%= f.text_field :gender%></td>
-<td><%= f.text_field :case%></td>
-<td><%= f.text_field :nounNumber%></td>
+<td><%= f.select(:speech, options_for_select([['Verb', 'Verb'], ['Noun', 'Noun'], ['Adjective', 'Adjective'], ['Preposition', 'Preposition'], ['Conjunction', 'Conjunction'], ['Adverb', 'Adverb'], ['Particle', 'Particle']])) %></td>
+<td><%= f.select(:tense, options_for_select([['Present', 'Present'], ['Imperfect', 'Imperfect'], ['Aorist','Aorist'], ['Future', 'Future'], ['Perfect', 'Perfect'], ['Pluperfect', 'Pluperfect'], ['N/A', '']]))%></td>
+<td><%= f.select(:voice, options_for_select([['N/A', ''],['Active', 'Active'], ['Middle', 'Middle'], ['Passive', 'Passive']]))%></td>
+<td><%= f.select(:mood, options_for_select([['N/A', ''],['Indicative', 'Indicative'], ['Subjunctive', 'Subjunctive'], ['Optative', 'Optative'], ['Participle', 'Participle'], ['Imperitive', 'Imperitive'], ['Infinitive', 'Infinitive']]))%></td>
+<td><%= f.select(:person, options_for_select([['N/A', ''],['1st', 1], ['2nd', 2], ['3rd', 3]]))%></td>
+<td><%= f.select(:verbNumber, options_for_select([['N/A', ''],['Sing', 'Sing'], ['Plural', 'Plural']]))%></td>
+<td><%= f.select(:gender, options_for_select([['Masc', 'Masc'], ['Fem', 'Fem'], ['Neut', 'Neut']]))%></td>
+<td><%= f.select(:case, options_for_select([['N/A', ''], ['Nominative', 'Nominative'], ['Genitive', 'Genitive'], ['Dative', 'Dative'], ['Accusative', 'Accusative'], ['Vocative', 'Vocative']]))%></td>
+<td><%= f.select(:nounNumber, options_for_select([['N/A', ''],['Sing', 'Sing'], ['Plural', 'Plural'], ['N/A', '']]))%></td>
 <td><%= f.text_field :definition%></td>
 <td><%= f.submit %></td>
 <% end %>
